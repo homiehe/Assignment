@@ -1,0 +1,116 @@
+---
+title: "R Notebook"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+exercise3
+#1
+tmpFn1 <- function(x){
+  x^(1:length(x))
+}
+
+#2
+tmpFn2 <- function(x){
+  (x^(1:length(x)))/(1:length(x))
+}
+
+
+tmpFn3 <- function(x,n){
+  1+sum(x^(1:n)/(1:n))
+}
+
+tmpFn <- function(xVec){
+n <- length(xVec)
+(xVec[-c(n-1:n)] + xVec[-c(1,n)] + xVec[-c(1,2)])/3 
+}
+
+#3
+tmpFn <- function(xVec){
+  ifelse(xVec<0,xVec^2+2*xVec+3,ifelse(xVec<2,xVec+3,xVec^2+4*xVec-7))
+}
+
+tmp<-seq(-3,3,len=100)
+plot(tmp, tmpFn(tmp), type="l") 
+
+#4
+tmp <- function(x){
+  x[x%%2==1]<-2*x[x%%2==1]
+  x
+}
+
+#5
+tmp <- function(x,n){
+  tmp <- diag(x,nrow<-n,ncol<-n)
+  tmp[abs(col(y)-row(y))==1]<-1
+  tmp
+}
+
+#6
+quadrant<-function(alpha){
+floor(alpha/90)%%4+1
+}
+
+#7
+weekday2 <- function(day, month, year) { 
+  flag <- (month <= 2) 
+  month <- month-2+12*flag 
+  year <- year-flag 
+  cc <- year%/%100 
+ year <- year%%100 
+ tmp <- floor(2.6*month-0.2)+day+year+year%/%4+cc%/%4-2*cc   c("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")[1+tmp%%7] }
+
+#8
+testLoop<-function(n){
+x<-rep(NA,n-1)
+x[1]<-1
+x[2]<-2
+for (i in 3:n-1){
+  x[i]<-x[i-1]+2/x[i-1]
+}
+x
+}
+
+testLoop2<-function(yVec){
+sum(exp(seq(along=yVec)))
+}
+
+#9
+quadmap<-function(start,rho,niter){
+x<-rep(NA,niter)
+x[1]<-start
+for (i in 1:(niter-1)){
+  x[i+1]<-rho*x[i]*(1-x[i])
+}
+x
+}
+
+quadmap2 <- function(start, rho) 
+{ 
+x1 <- start 
+x2 <- rho * x1 * (1 - x1) 
+niter <- 1 
+if(abs(x1-x2) > 0.02) { 
+  x1 <- x2 
+  x2 <- rho*x1*(1 - x1) 
+  niter <- niter + 1 } 
+niter 
+}
+    
+#10
+tmpFn<-function(xVec){
+n<-length(xVec)
+xmean<-mean(xVec)
+x<-(xVec-xmean)
+r1<-sum(x[2:n]*x[1:(n-1)])/sum(x^2)
+r2<-sum(x[3:n]*x[1:(n-2)])/sum(x^2)
+list<-(r1 = r1, r2 = r2)
+}
+
+tmpFnb<-function(x){
+xc<-x-mean(x) 
+n<-length(x) 
+tmpFn<-function(j){ sum( xc[(j+1):n]*xc[1:(n-j)] )/sum(xc^2) } 
+c(1, sapply(1:k, tmpFn)) }
+}
